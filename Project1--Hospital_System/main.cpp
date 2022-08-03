@@ -34,6 +34,17 @@ void shift_right(int spec)
 
 }
 
+void shift_left(int spec)
+{
+    for (int i=0; i<no_of_patients[spec]; i++)
+    {
+        names[spec][i] = names[spec][i+1];
+        status[spec][i] = status[spec][i+1];
+    }
+
+
+}
+
 void add_new_patient()
 {
         string s, name;
@@ -104,7 +115,21 @@ void print_patients()
 
 void get_next_patient()
 {
-    cout << endl;
+    int spec;
+    cout << "Enter specialization: ";
+    cin >> spec;
+
+
+    if (no_of_patients[spec] == 0)
+    {
+        cout << "No patients at the moment, have rest Dr. \n" << endl;
+        return;
+    }
+
+    cout << names[spec][0] << " please go with the Dr. \n" << endl;
+    shift_left(spec);
+    no_of_patients[spec]--;
+    return;
 }
 
 int main()
